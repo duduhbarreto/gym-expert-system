@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -54,8 +54,17 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section className="hero-section position-relative overflow-hidden">
-        <div className="hero-bg bg-gradient"></div>
-        <Container className="py-5">
+        {/* Imagem Hero como componente em vez de background CSS */}
+        <div className="hero-image-container">
+          <img 
+            src="/gym-hero.jpg" 
+            alt="Academia moderna com pessoas treinando" 
+            className="hero-background-image"
+          />
+          <div className="hero-overlay"></div>
+        </div>
+        
+        <Container className="py-5 position-relative">
           <Row className="justify-content-center py-5">
             <Col lg={8} className="text-center text-white">
               <motion.div
@@ -69,6 +78,7 @@ const Home = () => {
                   Transforme seus treinos com nossa plataforma inteligente que personaliza 
                   os exercícios para seus objetivos e nível de experiência.
                 </p>
+                {/* Botão de CTA com maior contraste */}
                 <motion.div 
                   className="d-flex justify-content-center gap-3"
                   variants={staggerContainer}
@@ -76,15 +86,10 @@ const Home = () => {
                   animate="visible"
                 >
                   <motion.div variants={buttonHover} whileHover="hover" initial="rest">
-                    <Button as={Link} to="/register" variant="light" size="lg" className="rounded-pill px-4">
+                    <Button as={Link} to="/register" variant="warning" size="lg" className="rounded-pill px-4 fw-bold">
                       <span className="d-flex align-items-center">
                         Começar Agora <FaArrowRight className="ms-2" />
                       </span>
-                    </Button>
-                  </motion.div>
-                  <motion.div variants={buttonHover} whileHover="hover" initial="rest">
-                    <Button as={Link} to="/login" variant="outline-light" size="lg" className="rounded-pill px-4">
-                      Login
                     </Button>
                   </motion.div>
                 </motion.div>
@@ -198,7 +203,7 @@ const Home = () => {
                 <div className="position-relative">
                   <div className="image-frame rounded-4 shadow overflow-hidden">
                     <img 
-                      src="/assets/imagens/600x400.jpg" 
+                      src="/600x400.jpg" 
                       alt="Pessoas treinando na academia" 
                       className="img-fluid" 
                     />
