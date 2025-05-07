@@ -54,7 +54,6 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section className="hero-section position-relative overflow-hidden">
-        {/* Imagem Hero como componente em vez de background CSS */}
         <div className="hero-image-container">
           <img 
             src="/gym-hero.jpg" 
@@ -86,11 +85,13 @@ const Home = () => {
                   animate="visible"
                 >
                   <motion.div variants={buttonHover} whileHover="hover" initial="rest">
-                    <Button as={Link} to="/register" variant="warning" size="lg" className="rounded-pill px-4 fw-bold">
-                      <span className="d-flex align-items-center">
-                        Começar Agora <FaArrowRight className="ms-2" />
-                      </span>
-                    </Button>
+                    <Link to="/register" className="text-decoration-none">
+                      <Button variant="warning" size="lg" className="rounded-pill px-4 fw-bold">
+                        <span className="d-flex align-items-center">
+                          Começar Agora <FaArrowRight className="ms-2" />
+                        </span>
+                      </Button>
+                    </Link>
                   </motion.div>
                 </motion.div>
               </motion.div>
