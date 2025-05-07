@@ -1,7 +1,9 @@
+// server/server.js - Versão atualizada
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 const { sequelize } = require('./models');
 const logger = require('./utils/logger');
 
@@ -11,6 +13,7 @@ const userRoutes = require('./routes/user.routes');
 const exerciseRoutes = require('./routes/exercise.routes');
 const workoutRoutes = require('./routes/workout.routes');
 const historyRoutes = require('./routes/history.routes');
+const placeholderRoutes = require('./middleware/placeholder.middleware');
 
 const app = express();
 
@@ -26,6 +29,15 @@ app.use('/api/users', userRoutes);
 app.use('/api/exercises', exerciseRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/history', historyRoutes);
+app.use('/api', placeholderRoutes); // Adicione esta linha para o middleware de placeholder
+
+// Serve static files from client/build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -55,6 +67,7 @@ async function startServer() {
     });
   } catch (error) {
     logger.error('Unable to connect to the database:', error);
+    logger.error(error.stack);
     process.exit(1);
   }
 }

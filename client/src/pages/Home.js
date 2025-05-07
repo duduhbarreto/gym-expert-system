@@ -95,7 +95,7 @@ const Home = () => {
           <Row className="align-items-center">
             <Col lg={6} className="mb-4 mb-lg-0">
               <img 
-                src="/api/placeholder/600/400" 
+                src="/600x400.jpg" 
                 alt="Pessoas treinando na academia" 
                 className="img-fluid rounded shadow"
               />

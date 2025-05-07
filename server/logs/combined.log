@@ -7,3 +7,21 @@
 2025-05-07 14:35:41 info: Database connection has been established successfully.
 2025-05-07 14:35:43 info: Database synchronized successfully.
 2025-05-07 14:35:43 info: Server is running on port 5000
+2025-05-07 15:53:20 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-07 15:53:21 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-07 15:53:21 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-07 16:01:01 [INFO]: Tentativa de login {
+  "service": "gym-expert-api",
+  "email": "admin@example.com"
+}
+2025-05-07 16:01:01 [INFO]: Login realizado com sucesso {
+  "service": "gym-expert-api",
+  "userId": 1,
+  "email": "admin@example.com"
+}
