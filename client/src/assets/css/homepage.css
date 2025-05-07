@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(13, 110, 253, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%), url('/images/Academia.jpg');
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%), var(--academia-image);
     background-size: cover;
     background-position: center;
     z-index: -1;

@@ -198,7 +198,7 @@ const Home = () => {
                 <div className="position-relative">
                   <div className="image-frame rounded-4 shadow overflow-hidden">
                     <img 
-                      src="/600x400.jpg" 
+                      src="/assets/imagens/600x400.jpg" 
                       alt="Pessoas treinando na academia" 
                       className="img-fluid" 
                     />
