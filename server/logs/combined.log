@@ -25,3 +25,29 @@
   "userId": 1,
   "email": "admin@example.com"
 }
+2025-05-07 17:10:45 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-07 17:10:46 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-07 17:10:46 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-07 17:11:19 [INFO]: Tentativa de login {
+  "service": "gym-expert-api",
+  "email": "lula1234@gmail.com"
+}
+2025-05-07 17:11:19 [INFO]: Tentativa de login: usuário não encontrado {
+  "service": "gym-expert-api",
+  "email": "lula1234@gmail.com"
+}
+2025-05-07 17:11:29 [INFO]: Tentativa de login {
+  "service": "gym-expert-api",
+  "email": "admin@example.com"
+}
+2025-05-07 17:11:29 [INFO]: Login realizado com sucesso {
+  "service": "gym-expert-api",
+  "userId": 1,
+  "email": "admin@example.com"
+}
