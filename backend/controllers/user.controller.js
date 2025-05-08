@@ -198,3 +198,155 @@ exports.getStats = async (req, res) => {
     });
   }
 };
+
+// Adicionar ao backend/controllers/user.controller.js
+
+// Atualizar email
+exports.updateEmail = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { email, password } = req.body;
+    
+    // Validar email
+    if (!email || !email.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email é obrigatório'
+      });
+    }
+    
+    // Verificar se o email já está em uso
+    const existingUser = await User.findOne({
+      where: { 
+        email: email,
+        id: { [Op.ne]: userId }
+      }
+    });
+    
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: 'Este email já está em uso'
+      });
+    }
+    
+    // Verificar senha atual
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuário não encontrado'
+      });
+    }
+    
+    const validPassword = bcrypt.compareSync(password, user.password);
+    if (!validPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Senha incorreta'
+      });
+    }
+    
+    // Atualizar email
+    await User.update(
+      { email: email },
+      { where: { id: userId } }
+    );
+    
+    return res.status(200).json({
+      success: true,
+      message: 'Email atualizado com sucesso',
+      email: email
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Erro ao atualizar email',
+      error: error.message
+    });
+  }
+};
+
+// Atualizar nome e idade
+exports.updatePersonalInfo = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { name, age } = req.body;
+    
+    if (!name || !name.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Nome é obrigatório'
+      });
+    }
+    
+    if (!age || isNaN(age) || age <= 0 || age > 120) {
+      return res.status(400).json({
+        success: false,
+        message: 'Idade inválida'
+      });
+    }
+    
+    await User.update(
+      { name, age },
+      { where: { id: userId } }
+    );
+    
+    const user = await User.findByPk(userId, {
+      attributes: { exclude: ['password'] }
+    });
+    
+    return res.status(200).json({
+      success: true,
+      message: 'Informações pessoais atualizadas com sucesso',
+      user: user
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Erro ao atualizar informações pessoais',
+      error: error.message
+    });
+  }
+};
+
+// Excluir conta
+exports.deleteAccount = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { password } = req.body;
+    
+    // Verificar senha
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuário não encontrado'
+      });
+    }
+    
+    const validPassword = bcrypt.compareSync(password, user.password);
+    if (!validPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Senha incorreta'
+      });
+    }
+    
+    // Excluir usuário
+    await User.destroy({
+      where: { id: userId }
+    });
+    
+    return res.status(200).json({
+      success: true,
+      message: 'Conta excluída com sucesso'
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Erro ao excluir conta',
+      error: error.message
+    });
+  }
+};

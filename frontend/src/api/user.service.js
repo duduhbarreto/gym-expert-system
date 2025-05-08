@@ -39,6 +39,34 @@ class UserService {
       throw error;
     }
   }
+
+  async updateEmail(emailData) {
+    try {
+      const response = await axios.post(API_URL + 'update-email', emailData, { headers: authHeader() });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updatePersonalInfo(userData) {
+    try {
+      const response = await axios.put(API_URL + 'personal-info', userData, { headers: authHeader() });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteAccount(passwordData) {
+    try {
+      const response = await axios.post(API_URL + 'delete-account', passwordData, { headers: authHeader() });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
 
 export default new UserService();

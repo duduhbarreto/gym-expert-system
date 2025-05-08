@@ -17,5 +17,12 @@ router.post('/change-password', controller.changePassword);
 
 // Get user stats
 router.get('/stats', controller.getStats);
+router.post('/update-email', controller.updateEmail);
+
+// Atualizar informações pessoais (nome e idade)
+router.put('/personal-info', controller.updatePersonalInfo);
+
+// Excluir conta
+router.post('/delete-account', controller.deleteAccount);
 
 module.exports = router;
