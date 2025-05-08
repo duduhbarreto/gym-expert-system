@@ -67,4 +67,13 @@ db.diet.belongsTo(db.user, { foreignKey: 'user_id' });
 db.user.hasMany(db.dietRestriction, { foreignKey: 'user_id' });
 db.dietRestriction.belongsTo(db.user, { foreignKey: 'user_id' });
 
+db.diet = require('./diet.model.js')(sequelize, Sequelize);
+db.dietRestriction = require('./diet_restriction.model.js')(sequelize, Sequelize);
+db.food = require('./food.model.js')(sequelize, Sequelize);
+
+db.user.hasOne(db.diet, { foreignKey: 'user_id' });
+db.diet.belongsTo(db.user, { foreignKey: 'user_id' });
+
+db.user.hasMany(db.dietRestriction, { foreignKey: 'user_id' });
+db.dietRestriction.belongsTo(db.user, { foreignKey: 'user_id' });
 module.exports = db;
