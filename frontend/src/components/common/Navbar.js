@@ -41,6 +41,9 @@ const AppNavbar = () => {
                 <Nav.Link as={NavLink} to="/history">
                   Histórico
                 </Nav.Link>
+                <Nav.Link as={NavLink} to="/diet">
+                  Dieta
+                </Nav.Link>
                 <NavDropdown 
                   title={
                     <span className="d-flex align-items-center">

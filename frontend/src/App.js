@@ -16,6 +16,7 @@ import Exercises from './pages/Exercises';
 import WorkoutList from './pages/WorkoutList';
 import WorkoutDetails from './pages/WorkoutDetails';
 import HistoryPage from './pages/HistoryPage';
+import Diet from './pages/Diet';
 
 // Components
 import Navbar from './components/common/Navbar';
@@ -88,6 +89,14 @@ function App() {
                   element={
                     <PrivateRoute>
                       <HistoryPage />
+                    </PrivateRoute>
+                  } 
+                />
+                <Route 
+                  path="/diet" 
+                  element={
+                    <PrivateRoute>
+                      <Diet />
                     </PrivateRoute>
                   } 
                 />

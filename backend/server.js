@@ -15,6 +15,7 @@ const exerciseRoutes = require('./routes/exercise.routes');
 const workoutRoutes = require('./routes/workout.routes');
 const historyRoutes = require('./routes/history.routes');
 const placeholderRoutes = require('./middleware/placeholder.middleware');
+const dietRoutes = require('./routes/diet.routes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/workouts', workoutRoutes);
 app.use('/api/history', historyRoutes);
 app.use('/api', placeholderRoutes);
 app.use('/api/muscle-groups', muscleRoutes);
+app.use('/api/diet', dietRoutes);
 
 // Serve static files from client/build in production
 if (process.env.NODE_ENV === 'production') {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Spinner, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaDumbbell, FaHistory, FaUser, FaListAlt } from 'react-icons/fa';
+import { FaDumbbell, FaChartLine, FaClipboardList, FaUserAlt, FaRocket, FaRegThumbsUp, FaArrowRight,FaUtensils, FaListAlt, FaHistory, FaUser} from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
 import workoutService from '../api/workout.service';
 import historyService from '../api/history.service';
@@ -266,6 +266,17 @@ const Dashboard = () => {
                 </Card.Body>
               </Card>
             </Col>
+            <Col md={3} className="mb-4">
+            <Card as={Link} to="/diet" className="shadow-sm h-100 text-decoration-none text-dark border-0 quick-link-card">
+              <Card.Body className="text-center">
+                <div className="icon-circle bg-success text-white mb-3">
+                  <FaUtensils size={24} />
+                </div>
+                <h5>Plano Alimentar</h5>
+                <p className="text-muted mb-0">Calcule e visualize sua dieta</p>
+              </Card.Body>
+            </Card>
+          </Col>
           </Row>
         </>
       )}
