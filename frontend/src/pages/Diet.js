@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Container, Row, Col, Card, Button, Form, Spinner, Alert, Badge, Tabs, Tab, Modal, ListGroup } from 'react-bootstrap';
 import { FaUtensils, FaWeightHanging, FaAppleAlt, FaBreadSlice, FaFish, FaBan, FaPizzaSlice, FaChartPie, FaPlus, FaTrash, FaInfoCircle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
 import dietService from '../api/diet.service';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
+// Registrar os elementos necessários do Chart.js
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Diet = () => {
   const { currentUser } = useContext(AuthContext);
@@ -16,6 +19,7 @@ const Diet = () => {
   const [mealSuggestions, setMealSuggestions] = useState(null);
   const [restrictions, setRestrictions] = useState([]);
   const [activeTab, setActiveTab] = useState('overview');
+  const chartRef = useRef(null);
   
   // Modal states
   const [showDietModal, setShowDietModal] = useState(false);
@@ -25,6 +29,41 @@ const Diet = () => {
   const [showRestrictionModal, setShowRestrictionModal] = useState(false);
   const [restrictionType, setRestrictionType] = useState('Alergia');
   const [restrictionDescription, setRestrictionDescription] = useState('');
+  
+  // Buscar dados do usuário ao carregar a página
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        // Tentar obter dieta existente
+        const dietResponse = await dietService.getDiet();
+        if (dietResponse.success) {
+          setDiet(dietResponse.diet);
+          
+          // Buscar sugestões de alimentos
+          const suggestionsResponse = await dietService.getFoodSuggestions();
+          if (suggestionsResponse.success) {
+            setFoodSuggestions(suggestionsResponse.foodSuggestions);
+            setMealSuggestions(suggestionsResponse.mealSuggestions);
+          }
+        }
+        
+        // Buscar restrições alimentares
+        const restrictionsResponse = await dietService.getRestrictions();
+        if (restrictionsResponse.success) {
+          setRestrictions(restrictionsResponse.restrictions);
+        }
+      } catch (error) {
+        if (error.response && error.response.status !== 404) {
+          toast.error('Erro ao carregar dados da dieta');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
   
   // Calculadora de macros para o gráfico
   const calculateMacroCalories = () => {
@@ -78,41 +117,6 @@ const Diet = () => {
       }
     }
   };
-  
-  // Buscar dados do usuário ao carregar a página
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        // Tentar obter dieta existente
-        const dietResponse = await dietService.getDiet();
-        if (dietResponse.success) {
-          setDiet(dietResponse.diet);
-          
-          // Buscar sugestões de alimentos
-          const suggestionsResponse = await dietService.getFoodSuggestions();
-          if (suggestionsResponse.success) {
-            setFoodSuggestions(suggestionsResponse.foodSuggestions);
-            setMealSuggestions(suggestionsResponse.mealSuggestions);
-          }
-        }
-        
-        // Buscar restrições alimentares
-        const restrictionsResponse = await dietService.getRestrictions();
-        if (restrictionsResponse.success) {
-          setRestrictions(restrictionsResponse.restrictions);
-        }
-      } catch (error) {
-        if (error.response && error.response.status !== 404) {
-          toast.error('Erro ao carregar dados da dieta');
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchData();
-  }, []);
   
   // Calcular nova dieta
   const handleCalculateDiet = async () => {
@@ -417,6 +421,44 @@ const Diet = () => {
     );
   };
   
+  // Componente para o gráfico de macronutrientes
+  const MacroNutrientChart = () => {
+    const chartContainer = useRef(null);
+    const chartInstance = useRef(null);
+    
+    useEffect(() => {
+      // Destruir gráfico anterior se existir
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+      
+      // Garantir que o container existe e temos dados de dieta
+      if (chartContainer.current && diet) {
+        const ctx = chartContainer.current.getContext('2d');
+        
+        // Criar novo gráfico
+        chartInstance.current = new ChartJS(ctx, {
+          type: 'doughnut',
+          data: getChartData(),
+          options: chartOptions
+        });
+      }
+      
+      // Cleanup ao desmontar
+      return () => {
+        if (chartInstance.current) {
+          chartInstance.current.destroy();
+        }
+      };
+    }, [diet]); // Recriar gráfico quando os dados da dieta mudarem
+    
+    return (
+      <div style={{ height: '300px', position: 'relative' }}>
+        <canvas ref={chartContainer} />
+      </div>
+    );
+  };
+  
   if (loading) {
     return (
       <Container className="py-5 text-center">
@@ -530,9 +572,8 @@ const Diet = () => {
                   {renderMacroCalories()}
                 </Col>
                 <Col md={4}>
-                  <div style={{ height: '300px', position: 'relative' }}>
-                    <Doughnut data={getChartData()} options={chartOptions} />
-                  </div>
+                  {/* Usando o componente otimizado para o gráfico */}
+                  <MacroNutrientChart />
                 </Col>
               </Row>
             </Card.Body>
