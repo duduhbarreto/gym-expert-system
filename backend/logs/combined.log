@@ -515,3 +515,27 @@
 2025-05-08 19:25:03 [INFO]: Found 5 workouts {
   "service": "gym-expert-api"
 }
+2025-05-08 19:25:44 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:44 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:48 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:48 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:51 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:51 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:56 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 19:25:56 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
