@@ -17,6 +17,7 @@ router.post('/change-password', controller.changePassword);
 
 // Get user stats
 router.get('/stats', controller.getStats);
+
 router.post('/update-email', controller.updateEmail);
 
 // Atualizar informações pessoais (nome e idade)
