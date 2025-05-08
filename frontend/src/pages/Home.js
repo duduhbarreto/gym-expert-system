@@ -85,13 +85,17 @@ const Home = () => {
                   animate="visible"
                 >
                   <motion.div variants={buttonHover} whileHover="hover" initial="rest">
-                    <Link to="/register" className="text-decoration-none">
-                      <Button variant="warning" size="lg" className="rounded-pill px-4 fw-bold">
-                        <span className="d-flex align-items-center">
-                          Começar Agora <FaArrowRight className="ms-2" />
-                        </span>
-                      </Button>
-                    </Link>
+                    <Button 
+                      as={Link} 
+                      to="/register" 
+                      variant="warning" 
+                      size="lg" 
+                      className="rounded-pill px-4 fw-bold"
+                    >
+                      <span className="d-flex align-items-center">
+                        Começar Agora <FaArrowRight className="ms-2" />
+                      </span>
+                    </Button>
                   </motion.div>
                 </motion.div>
               </motion.div>

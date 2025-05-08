@@ -183,3 +183,63 @@
 2025-05-08 10:48:28 [INFO]: Found 5 workouts {
   "service": "gym-expert-api"
 }
+2025-05-08 10:52:25 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:52:26 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:52:26 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:25:40 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:25:41 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:25:41 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:26:02 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:26:02 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:33:56 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:34:09 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:34:09 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:41:33 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 18:41:33 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}

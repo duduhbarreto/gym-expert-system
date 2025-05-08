@@ -80,7 +80,7 @@ export const WorkoutProvider = ({ children }) => {
     loadData();
   }, [currentUser, initialized, fetchWorkouts, fetchRecommendedWorkout, fetchWorkoutHistory]);
 
-  const getWorkout = async (id) => {
+  const getWorkout = useCallback(async (id) => {
     console.log(`Getting workout with id: ${id}`);
     try {
       setLoading(true);
@@ -93,7 +93,7 @@ export const WorkoutProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const recordWorkout = async (workoutId, feedback, notes) => {
     try {
