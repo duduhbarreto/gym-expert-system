@@ -3,6 +3,7 @@ const Workout = db.workout;
 const Exercise = db.exercise;
 const MuscleGroup = db.muscleGroup;
 const WorkoutExercise = db.workoutExercise;
+const logger = require('../utils/logger');
 const Op = db.Sequelize.Op;
 
 // Create a new workout
@@ -44,18 +45,24 @@ exports.create = async (req, res) => {
   }
 };
 
-// Get all workouts
+// Get all workouts - adicionar logs para depuração
 exports.findAll = async (req, res) => {
   try {
+    logger.info(`Fetching all workouts, requested by user id: ${req.userId}`);
+    
     const workouts = await Workout.findAll({
       order: [['name', 'ASC']]
     });
 
+    logger.info(`Found ${workouts.length} workouts`);
+    
     return res.status(200).json({
       success: true,
       workouts: workouts
     });
   } catch (error) {
+    logger.error(`Error fetching workouts: ${error.message}`, { error: error.stack });
+    
     return res.status(500).json({
       success: false,
       message: 'Falha ao buscar treinos',

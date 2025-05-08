@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Badge, Button, Form, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Button, Form, Spinner, Alert } from 'react-bootstrap';
 import { WorkoutContext } from '../context/WorkoutContext';
 
 const WorkoutList = () => {
@@ -11,16 +11,60 @@ const WorkoutList = () => {
     level: '',
     duration: ''
   });
+  const [error, setError] = useState('');
+  const [displayLoading, setDisplayLoading] = useState(true);
   
+  // Definir um timeout para mostrar mensagem de erro após um tempo
   useEffect(() => {
-    fetchWorkouts();
-  }, [fetchWorkouts]);
+    const timer = setTimeout(() => {
+      if (loading && displayLoading) {
+        setError('O carregamento está demorando mais do que o esperado. Verifique sua conexão com a internet ou tente novamente mais tarde.');
+      }
+    }, 10000); // Mostrar mensagem após 10 segundos de carregamento
+
+    return () => clearTimeout(timer);
+  }, [loading, displayLoading]);
   
+  // Fetch workouts if needed
   useEffect(() => {
+    console.log('WorkoutList mounted/updated, workouts:', workouts);
+    const loadData = async () => {
+      try {
+        console.log('Trying to fetch workouts...');
+        setDisplayLoading(true);
+        await fetchWorkouts();
+      } catch (e) {
+        console.error('Error in WorkoutList useEffect:', e);
+        setError('Erro ao carregar treinos. Por favor, tente novamente.');
+      } finally {
+        // Definir um tempo mínimo de exibição do loading para evitar flash
+        setTimeout(() => {
+          setDisplayLoading(false);
+        }, 500);
+      }
+    };
+    
+    if (workouts.length === 0) {
+      loadData();
+    } else {
+      setDisplayLoading(false);
+    }
+  }, [fetchWorkouts, workouts.length]);
+  
+  // Filter workouts when workouts or filters change
+  useEffect(() => {
+    console.log('Filtering workouts, workouts:', workouts);
     filterWorkouts();
   }, [workouts, filters]);
   
   const filterWorkouts = () => {
+    // Garantir que workouts é um array
+    if (!Array.isArray(workouts)) {
+      console.error('workouts is not an array:', workouts);
+      setFilteredWorkouts([]);
+      return;
+    }
+    
     let filtered = [...workouts];
     
     if (filters.goal) {
@@ -47,6 +91,7 @@ const WorkoutList = () => {
       }
     }
     
+    console.log('Filtered workouts:', filtered);
     setFilteredWorkouts(filtered);
   };
   
@@ -66,9 +111,41 @@ const WorkoutList = () => {
     });
   };
 
+  const handleRetry = async () => {
+    setError('');
+    setDisplayLoading(true);
+    try {
+      await fetchWorkouts();
+    } catch (e) {
+      console.error('Error in retry:', e);
+      setError('Erro ao carregar treinos. Por favor, tente novamente.');
+    } finally {
+      setDisplayLoading(false);
+    }
+  };
+
+  // Mostrar mensagem de depuração
+  console.log('Render state:', { 
+    workoutsLength: workouts.length, 
+    filteredLength: filteredWorkouts.length, 
+    loading, 
+    displayLoading,
+    error 
+  });
+
   return (
     <Container className="py-4">
       <h1 className="mb-4">Todos os Treinos</h1>
+      
+      {error && (
+        <Alert variant="danger" className="mb-4" dismissible onClose={() => setError('')}>
+          <Alert.Heading>Erro!</Alert.Heading>
+          <p>{error}</p>
+          <Button variant="outline-danger" onClick={handleRetry}>
+            Tentar Novamente
+          </Button>
+        </Alert>
+      )}
       
       {/* Filters */}
       <Card className="mb-4 shadow-sm">
@@ -118,7 +195,7 @@ const WorkoutList = () => {
                   <option value="">Todos</option>
                   <option value="short">Curta (≤ 30 min)</option>
                   <option value="medium">Média (31-60 min)</option>
-                  <option value="long">Longa (= 60 min)</option>
+                  <option value="long">Longa (&gt; 60 min)</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -127,6 +204,7 @@ const WorkoutList = () => {
                 variant="secondary" 
                 onClick={resetFilters}
                 className="mb-3 w-100"
+                disabled={displayLoading}
               >
                 Limpar Filtros
               </Button>
@@ -136,7 +214,7 @@ const WorkoutList = () => {
       </Card>
       
       {/* Workouts Grid */}
-      {loading ? (
+      {displayLoading ? (
         <div className="text-center py-5">
           <Spinner animation="border" variant="primary" />
           <p className="mt-3">Carregando treinos...</p>
@@ -147,10 +225,15 @@ const WorkoutList = () => {
             <Card className="text-center p-5 shadow-sm">
               <Card.Body>
                 <h4>Nenhum treino encontrado</h4>
-                <p>Tente ajustar os filtros para encontrar treinos disponíveis.</p>
-                <Button onClick={resetFilters} variant="primary">
-                  Limpar Filtros
-                </Button>
+                <p>Tente ajustar os filtros para encontrar treinos disponíveis ou verifique sua conexão.</p>
+                <div className="mt-3">
+                  <Button onClick={resetFilters} variant="primary" className="me-2">
+                    Limpar Filtros
+                  </Button>
+                  <Button onClick={handleRetry} variant="outline-primary">
+                    Atualizar Lista
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           ) : (

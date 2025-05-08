@@ -141,3 +141,45 @@
 2025-05-08 10:34:19 [INFO]: Server is running on port 5000 {
   "service": "gym-expert-api"
 }
+2025-05-08 10:41:44 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:41:45 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:41:45 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:09 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:10 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:10 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:12 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:12 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:25 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:25 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:26 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:26 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:28 [INFO]: Fetching all workouts, requested by user id: 2 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:48:28 [INFO]: Found 5 workouts {
+  "service": "gym-expert-api"
+}
