@@ -51,3 +51,93 @@
   "userId": 1,
   "email": "admin@example.com"
 }
+2025-05-08 10:27:18 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:27:19 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:27:19 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:27:57 [INFO]: Tentativa de registro de novo usuário {
+  "service": "gym-expert-api",
+  "email": "lula1234@gmail.com"
+}
+2025-05-08 10:27:57 [INFO]: Usuário registrado com sucesso {
+  "service": "gym-expert-api",
+  "userId": 2,
+  "email": "lula1234@gmail.com"
+}
+2025-05-08 10:28:04 [INFO]: Tentativa de login {
+  "service": "gym-expert-api",
+  "email": "lula1234@gmail.com"
+}
+2025-05-08 10:28:04 [INFO]: Login realizado com sucesso {
+  "service": "gym-expert-api",
+  "userId": 2,
+  "email": "lula1234@gmail.com"
+}
+2025-05-08 10:32:27 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:32:28 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:32:28 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:32:36 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:32:38 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:32:38 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:12 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:13 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:13 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:17 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:18 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:18 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:25 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:26 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:33:26 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:34:03 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:34:04 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:34:04 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:34:18 [INFO]: Database connection has been established successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:34:19 [INFO]: Database synchronized successfully. {
+  "service": "gym-expert-api"
+}
+2025-05-08 10:34:19 [INFO]: Server is running on port 5000 {
+  "service": "gym-expert-api"
+}

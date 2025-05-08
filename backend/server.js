@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const path = require('path');
 const { sequelize } = require('./models');
 const logger = require('./utils/logger');
+const muscleRoutes = require('./routes/muscle.routes');
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
@@ -29,7 +30,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/exercises', exerciseRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/history', historyRoutes);
-app.use('/api', placeholderRoutes); // Adicione esta linha para o middleware de placeholder
+app.use('/api', placeholderRoutes);
+app.use('/api/muscle-groups', muscleRoutes);
 
 // Serve static files from client/build in production
 if (process.env.NODE_ENV === 'production') {

@@ -15,7 +15,7 @@ export const WorkoutProvider = ({ children }) => {
 
   // Load workouts when user is authenticated
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && workouts.length === 0) {
       fetchWorkouts();
       fetchRecommendedWorkout();
       fetchWorkoutHistory();
